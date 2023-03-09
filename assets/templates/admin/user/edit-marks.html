@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Edit Marks</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+  <form class="shadow-md p-10 bg-blue-200" action="/students/{{.StudentDetail.ID}}/update/marks/{{.StudentDetail.ClassID}}" method="post">
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+    <h1 class="font-semibold pb-4 text-xl">{{.StudentDetail.StudentName}} belongs to class - {{.StudentDetail.ClassName}}</h1>
+    <div class="py-2">   
+        <h1 class="text-base text-gray-800 text-semibold pb-4">Edit Marks:</h1>
+        {{range .ListOfSubject}}
+        <div class="py-2 flex items-center w-8/12">
+            <label class="w-full" for="classname">{{.SubjectName}}</label>
+            <input class="border border-gray-400 rounded-md w-full py-2" type="text" id="classname" name="SubjectMarks[{{.StudentSubID}}]" value="{{.Mark}}">     
+        </div>
+          {{with ( index $.FormError "SubjectMarks") }}
+              <p class="text-red-500 ">{{.}}</p>
+          {{end}}
+        {{end}}
+    </div>
+    <button class="w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+      Update marks
+    </button>
+    <a href="/students" class="block text-center w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+        Student List
+    </a>
+  </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Create Class</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+  <form class="shadow-md p-10 bg-blue-200" action="/admin/store/class" method="post">
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+    <p class="text-sm text-gray-600 pb-4">Please Create Class</p>
+
+    <div class="py-2">   
+        <label class="w-full" for="classname">Enter Class Name: </label>
+        <input class="border border-gray-400 rounded-md w-full" type="text" id="classname" name="ClassName" value="">
+        {{with ( index .ClassFormError "ClassName") }}
+          <p class="text-red-500 ">{{.}}</p>
+        {{end}}
+    </div>
+
+    <button class="w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+      Create Class
+    </button>
+    <a href="/admin/options" class="block text-center w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+      Back to Options
+    </a>
+  </form>
+</body>
+</html>

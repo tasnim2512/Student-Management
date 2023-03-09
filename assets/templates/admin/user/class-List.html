@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Class List</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+  <div class="shadow-md p-10 bg-gray-100 w-6/12">
+      <div class="flex flex wrap w-full justify-between pb-4">
+        <h1 class="font-semibold pb-4 text-xl">Class list</h1>
+      </div>
+      <table class="shadow-md w-full">
+        <tr class="bg-blue-200">
+          <th class="p-2">Class Name</th>
+          <th class="p-2">Result</th>
+        </tr>
+        {{range .Classes}}
+          <tr class="border-b border-gray-300">
+            <td class="p-2 text-center">{{.ClassName}}</td>
+            <td class="p-2 text-center">
+                <a href="/admin/show/class/{{.ID}}/result">Result</a>
+            </td>
+          </tr>
+        {{end}}
+      </table>
+    <div class="flex space-x-6 justify-between pt-4">
+      <!-- <a href="/admin/create/student" class="block w-5/12 text-center border border-black rounded-md bg-blue-400 py-1 mt-4">
+        Create Student
+      </a> -->
+      <a href="/admin/options" class="block text-center w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+        Back to Options
+      </a>
+    </div>
+  </div>
+</body>
+</html>

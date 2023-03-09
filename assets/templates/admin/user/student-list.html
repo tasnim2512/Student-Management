@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Student List</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+  <div class="shadow-md p-10 bg-gray-100 w-6/12">
+      <div class="flex flex wrap w-full justify-between pb-4">
+        <h1 class="font-semibold pb-4 text-xl">Student's list</h1>
+        <form class="" action="/students" method="get">
+            <div class="border border-gray-600 w-full flex rounded-md mx-auto lg:mx-0">
+              <input id="searchvalue" name="SearchTerm" type="text" value="{{ .SearchTerm }}" placeholder="Search By First Name" class="w-full h-8 p-4 focus:outline-none rounded-md border-transparent"/>
+              <button type="submit" class="focus:outline-none bg-blue-400 px-4">Search</button>
+            </div>
+        </form>
+      </div>
+      <table class="shadow-md w-full">
+        <tr class="bg-blue-200">
+          <th class="p-2">First Name</th>
+          <th class="p-2">Last Name</th>
+          <th class="p-2">Roll</th>
+          <th class="p-2">Username</th>
+          <th class="p-2">Actions</th>
+        </tr>
+        {{range .Students}}
+          <tr class="border-b border-gray-300">
+            <td class="p-2 text-center">{{.FirstName}}</td>
+            <td class="p-2 text-center">{{.LastName}}</td>
+            <td class="p-2 text-center">{{.Roll}}</td>
+            <td class="p-2 text-center">{{.UserName}}</td>
+            <td class="p-2 text-center flex justify-center space-x-2">
+              {{if gt .Marks  0}}
+              <a class="text-blue-700 underline" href="/students/{{.ID}}/edit/marks/{{.ClassID}}">Edit marks</a> 
+              {{else}}
+              <a class="text-blue-700 underline" href="/students/{{.ID}}/add/marks/{{.ClassID}}">Add marks</a>
+              {{end}}
+              <a href="/students/{{.ID}}/delete" class="text-blue-700 underline" href="">Delete</a> 
+              <a href="/students/{{.ID}}/result" class="text-blue-700 underline" href="">Show Result</a> 
+            </td>
+          </tr>
+        {{end}}
+      </table>
+    <div class="flex space-x-6 justify-between pt-4">
+      <a href="/admin/create/student" class="block w-5/12 text-center border border-black rounded-md bg-blue-400 py-1 mt-4">
+        Create Student
+      </a>
+      <a href="/admin/options" class="block text-center w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+        Back to Options
+      </a>
+    </div>
+    <div class="flex justify-center pt-6">
+      <ul class="flex items-center">
+        {{ $prev := calculatePrevPage .PageNumber}}
+        <li><a class="px-2 underline text-blue-700" href="{{if $prev }} /students?page={{$prev}} {{else}} javascript:; {{end}}">Prev</a></li>
+        {{range $i := until .TotalPage }}
+          {{ $page := add $i 1}}
+          <li class="{{ if eq $page $.PageNumber }} bg-blue-600 text-white {{ else }} bg-blue-200 text-black {{ end }} rounded-md py-1 space-y-3 mx-2 px-2">
+            <a href="{{ if eq $page $.PageNumber }}javascript:; {{else}} /students?page={{$page}}{{end}}">
+              {{$page}}
+            </a>
+          </li>
+        {{end}}
+        {{ $next := calculateNextPage .PageNumber .TotalPage}}
+        <li><a class="px-2 underline text-blue-700" href="{{if $next }} /students?page={{$next}} {{else}} javascript:; {{end}}">Next</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

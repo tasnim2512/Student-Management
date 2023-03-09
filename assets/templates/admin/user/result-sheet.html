@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Result Sheet</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+  <div class="shadow-md p-10 bg-gray-100 w-6/12">
+      <table class="shadow-md w-full">
+        <tr class="bg-blue-200">
+          <th class="p-2">Student Name</th>
+          <th class="p-2">New Roll</th>
+          <th class="p-2">Total Marks</th>
+        </tr>
+
+        {{$i := 0}}
+        {{range .StudentList}}
+          <tr class="border-b border-gray-300">
+            <td class="p-2 text-center">{{.UserName}}</td>
+            <td class="p-2 text-center">{{$i = add $i 1}} {{$i}}</td>
+            <td class="p-2 text-center">{{.Marks}}</td>
+          </tr>
+        {{end}}
+      </table>
+    <div class="flex space-x-6 justify-between pt-4">
+      <a href="/admin/classList" class="block text-center w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+        Back
+      </a>
+    </div>
+  </div>
+</body>
+</html>

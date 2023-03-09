@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>User</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+  <div class="shadow-md p-10 bg-blue-200">
+    <p class="text-sm text-gray-600 pb-4">Student detail</p>
+    <div class="py-2 text-base">   
+      <h1>Name: {{.Name}}</h1>
+    </div>
+    <div class="py-2 text-base">   
+      <h1>Roll: {{.Roll}}</h1>
+    </div>
+    <a href="/students" class="block w-10/12 text-center border border-black rounded-md bg-blue-400 py-1 mt-4" type="button">
+      Back
+    </a>
+  </div>
+</body>
+</html>

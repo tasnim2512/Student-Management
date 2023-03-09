@@ -1,0 +1,44 @@
+<input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+<p class="text-sm text-gray-600 pb-4">Please enter Student details</p>
+
+
+  <label class="w-full" for="">Choose Class</label>
+  <select name="ClassID" id="">
+      <option {{if eq .Student.ID 0 }} selected {{end}} value="">Select a class</option>
+      {{range .ListOfClasses}}
+        <option {{if gt $.Student.ID 0}} selected {{end}} value="{{.ID}}">Class {{.ClassName}}</option>
+      {{end}}
+  </select>
+
+<div class="py-2">   
+  <label class="w-full" for="first_name">First Name: </label>
+  <input class="border border-gray-400 rounded-md w-full" type="text" id="first_name" name="FirstName" value="{{.Student.FirstName}}">
+  {{with ( index .FormError "FirstName") }}
+    <p class="text-red-500 ">{{.}}</p>
+  {{end}}
+</div>
+
+<div class="py-2">   
+  <label class="w-full" for="last_name">Last Name: </label>
+  <input class="border border-gray-400 rounded-md w-full" type="text" id="last_name" name="LastName" value="{{.Student.LastName}}">
+  {{with ( index .FormError "LastName") }}
+    <p class="text-red-500 ">{{.}}</p>
+  {{end}}
+</div>
+
+<div class="py-2">
+  <label class="w-full" for="roll">Roll: </label>
+  <input class="border border-gray-400 rounded-md w-full" type="text" name="Roll" value="{{.Student.Roll}}">
+  {{with ( index .FormError "Roll") }}
+    <p class="text-red-500 ">{{.}}</p>
+  {{end}}
+</div> 
+
+<div class="py-2">
+  <label class="w-full" for="username">Username: </label>
+  <input class="border border-gray-400 rounded-md w-full" {{if .Student.ID}} readonly {{end}} type="text" id="username" name="UserName" value="{{.Student.UserName}}">
+  {{with ( index .FormError "UserName") }}
+    <p class="text-red-500 ">{{.}}</p>
+  {{end}}
+</div> 
+

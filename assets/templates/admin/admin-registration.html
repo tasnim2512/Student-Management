@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Admin Register</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+  <form class="shadow-md p-10 bg-blue-200" action="/admin/store" method="Post">
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+    
+    <div class="py-2">   
+      <label class="w-full" for="first_name">First Name: </label>
+      <input class="border border-gray-400 rounded-md w-full" type="text" id="first_name" name="FirstName" value="{{.Admin.FirstName}}">
+      {{with ( index .FormError "FirstName") }}
+        <p class="text-red-500 ">{{.}}</p>
+      {{end}}
+    </div>
+    
+    <div class="py-2">   
+      <label class="w-full" for="last_name">Last Name: </label>
+      <input class="border border-gray-400 rounded-md w-full" type="text" id="last_name" name="LastName" value="{{.Admin.LastName}}">
+      {{with ( index .FormError "LastName") }}
+        <p class="text-red-500 ">{{.}}</p>
+      {{end}}
+    </div>
+    
+    <div class="py-2">
+      <label class="w-full" for="email">Email: </label>
+      <input class="border border-gray-400 rounded-md w-full" type="email" name="Email" value="{{.Admin.Email}}">
+      {{with ( index .FormError "Email") }}
+        <p class="text-red-500 ">{{.}}</p>
+      {{end}}
+    </div> 
+    
+    <div class="py-2">
+      <label class="w-full" for="username">Username: </label>
+      <input class="border border-gray-400 rounded-md w-full" type="text" id="username" name="UserName" value="{{.Admin.UserName}}">
+      {{with ( index .FormError "UserName") }}
+        <p class="text-red-500 ">{{.}}</p>
+      {{end}}
+    </div> 
+    
+      <div class="py-2">
+        <label class="w-full" for="password">Password: </label>
+        <input class="border border-gray-400 rounded-md w-full" type="password" id="password" name="Password" value="">
+        {{with ( index .FormError "Password") }}
+          <p class="text-red-500 ">{{.}}</p>
+        {{end}}
+      </div>
+    
+      <div class="py-2 flex">
+        <label class="w-full" for="status">Status: </label>
+        <label class="w-full" for="active">
+          <input class="" type="radio" id="active" name="Status" value="true">
+          Active 
+        </label>
+        <label class="w-full" for="inactive">
+          <input class="" type="radio" id="inactive" name="Status" value="false" >
+          Inactive 
+        </label>
+        {{with ( index .FormError "Status") }}
+          <p class="text-red-500 ">{{.}}</p>
+        {{end}}
+      </div>
+    <button class="w-3/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+      Register
+    </button>
+  </form>
+</body>
+</html>

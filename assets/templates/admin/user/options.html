@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Options</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+    <div class="shadow-md p-10 bg-blue-100 w-4/12 flex justify-center rounded-md">
+        <ul class="w-4/12 flex justify-center flex-wrap">
+            <h1 class="font-semibold py-4 text-xl">Admin's Option</h1>
+            <li class="w-full text-center border border-black rounded-md bg-blue-800 text-white py-1 mt-4">
+                <a href="/admin/create/class">Create Class</a>
+            </li>
+            {{if .IsSubjectValid}}
+            <li class="w-full text-center border border-black rounded-md bg-blue-800 text-white py-1 mt-4">
+                <a href="/admin/create/subject">Create Subject</a>
+            </li>
+            {{end}}
+
+            {{if .IsStudentValid}}
+            <li class="w-full text-center border border-black rounded-md bg-blue-800 text-white py-1 mt-4">
+                <a href="/admin/create/student">Create Student</a>
+            </li>
+            {{end}}
+            
+            <li class="w-full text-center border border-black rounded-md bg-blue-800 text-white py-1 mt-4">
+                <a href="/students">Student List</a>
+            </li>
+            <li class="w-full text-center border border-black rounded-md bg-blue-800 text-white py-1 mt-4">
+                <a href="/admin/classList">Class List</a>
+            </li>
+            <li class="w-full text-center border border-black rounded-md bg-blue-800 text-white py-1 mt-4">
+                <a href="/logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

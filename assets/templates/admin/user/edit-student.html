@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Edit Student</title>
+</head>
+<body class="flex justify-center items-center py-20 bg-blue-300 min-h-screen">
+  <form class="shadow-md p-10 bg-blue-200" action="/admin/{{.Student.ID}}/update/student" method="post">
+    <input type="hidden" name="_method" value="put">
+      {{template "_form.html" .}}
+    <button class="w-3/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+      Submit
+    </button>
+    <a href="/admin/options" class="block text-center w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+      Back to Options
+    </a>
+    <a href="/students" class="block text-center w-5/12 border border-black rounded-md bg-blue-400 py-1 mt-4" type="submit">
+      Student List
+    </a>
+  </form>
+</body>
+</html>
